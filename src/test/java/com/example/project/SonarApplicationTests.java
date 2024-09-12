@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = SonarApplication.class)
-class GarageServiceTest {
+class SonarApplicationTests {
 
     @Autowired
     private GarageService garageService;

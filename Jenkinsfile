@@ -24,20 +24,20 @@ pipeline {
         }
     }
 
-    // post {
-    //     success {
-    //         script{
-    //              withCredentials([string(credentialsId: 'telebot-token', variable: 'TOKEN'), string(credentialsId: 'telegram-chat-id', variable: 'CHAT_ID')]) {
-    //                 sh ' curl -s -X POST https://api.telegram.org/bot"$TOKEN"/sendMessage -d chat_id="$CHAT_ID" -d text="$TEXT_SUCCESS_BUILD" '
-    //              }
-    //         }
-    //     }
-    //     failure {
-    //         script{
-    //             withCredentials([string(credentialsId: 'telebot-token', variable: 'TOKEN'), string(credentialsId: 'telegram-chat-id', variable: 'CHAT_ID')]) {
-    //                 sh ' curl -s -X POST https://api.telegram.org/bot"$TOKEN"/sendMessage -d chat_id="$CHAT_ID" -d text="$TEXT_FAILURE_BUILD" '
-    //             }
-    //         }
-    //     }
-    // }
+    post {
+        success {
+            script{
+                 withCredentials([string(credentialsId: 'telebot-token', variable: 'TOKEN'), string(credentialsId: 'telegram-chat-id', variable: 'CHAT_ID')]) {
+                    sh ' curl -s -X POST https://api.telegram.org/bot"$TOKEN"/sendMessage -d chat_id="$CHAT_ID" -d text="$TEXT_SUCCESS_BUILD" '
+                 }
+            }
+        }
+        failure {
+            script{
+                withCredentials([string(credentialsId: 'telebot-token', variable: 'TOKEN'), string(credentialsId: 'telegram-chat-id', variable: 'CHAT_ID')]) {
+                    sh ' curl -s -X POST https://api.telegram.org/bot"$TOKEN"/sendMessage -d chat_id="$CHAT_ID" -d text="$TEXT_FAILURE_BUILD" '
+                }
+            }
+        }
+    }
 }
